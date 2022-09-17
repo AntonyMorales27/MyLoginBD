@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "507912667651",
+    "firebase_url": "https://myapbpd-default-rtdb.firebaseio.com",
+    "project_id": "myapbpd",
+    "storage_bucket": "myapbpd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507912667651:android:64145c1c1098a6c80a4436",
+        "android_client_info": {
+          "package_name": "com.example.myloginbd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507912667651-iq9eb21cgv7723id1tqd56j68v5h2pfh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2PbSk-4hYGdMdYVVI1JHL9JCgubWmsQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507912667651-iq9eb21cgv7723id1tqd56j68v5h2pfh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
