@@ -14,12 +14,12 @@ class FirebaseSinUpUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(user: User, password: String): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading)
-        val isSignUpSuccessFully = authRepository.SingUp(user.email, password)
+        val uidRegistered = authRepository.SingUp(user.email, password)
 
         var isDBRegisteredSuccessfully = false
 
-        if (isSignUpSuccessFully){
-            isDBRegisteredSuccessfully = userRepository.createUser(user)
+        if (uidRegistered.isNotEmpty()){
+            isDBRegisteredSuccessfully = userRepository.createUser(user.copy(uid = uidRegistered))
         }
 
         if (isDBRegisteredSuccessfully) {

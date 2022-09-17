@@ -1,7 +1,9 @@
 package com.example.myloginbd
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -12,6 +14,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myloginbd.databinding.ActivityMenu2Binding
+import com.example.myloginbd.ui.dominio.dominio.LoggedUser
+import org.w3c.dom.Text
 
 class Menu2Activity : AppCompatActivity() {
 
@@ -30,8 +34,14 @@ class Menu2Activity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
+
+        val menuLateral = navView.getHeaderView(0) // Accedemos a la vista del menu lateral
+        val emailTextView = menuLateral.findViewById<TextView>(R.id.textViewEmailUser)
+        emailTextView.text = LoggedUser.currentUser.email
+
         val navController = findNavController(R.id.nav_host_fragment_content_menu2)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

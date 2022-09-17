@@ -23,13 +23,13 @@
             android:name=".MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".RecuperarContrasenaActivity"
+            android:name=".ui.password_recovery.RecuperarContrasenaActivity"
             android:exported="false" />
         <activity
             android:name=".ui.signUp.RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.login.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

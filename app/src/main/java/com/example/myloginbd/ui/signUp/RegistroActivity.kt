@@ -45,6 +45,7 @@ class RegistroActivity : AppCompatActivity() {
         viewModel.signUpState.observe(this){ state ->
             when(state){
                 is Resource.Success -> {
+                    finish()
                     Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Error -> {
