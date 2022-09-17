@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.myloginbd.ui.signUp.RegistroActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         val BotonRegistrar = findViewById<Button>(R.id.Registar)
         BotonRegistrar.setOnClickListener {
-            val Intent =  Intent(this,RegistroActivity::class.java)
+            val Intent =  Intent(this, RegistroActivity::class.java)
             startActivity(Intent)
         }
         val BotonOlvideContraseña = findViewById<Button>(R.id.button3)
@@ -30,7 +31,4 @@ class MainActivity : AppCompatActivity() {
         // SETUP
 
     }
-
-
-
 }

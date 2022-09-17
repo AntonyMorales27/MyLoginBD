@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myloginbd.ui.Resource
+import com.example.myloginbd.ui.dominio.dominio.model.User
 import com.example.myloginbd.ui.dominio.dominio.usercase.FirebaseSinUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -21,9 +22,9 @@ class SingUpViewModel @Inject constructor(
     val signUpState: LiveData<Resource<Boolean>>
     get() = _signUpState
 
-    fun sinUp(email: String, password: String){
+    fun sinUp(user: User, password: String){
         viewModelScope.launch {
-            signUpUseCase(email, password).onEach { state ->
+            signUpUseCase(user, password).onEach { state ->
                 _signUpState.value = state
 
             }.launchIn(viewModelScope)

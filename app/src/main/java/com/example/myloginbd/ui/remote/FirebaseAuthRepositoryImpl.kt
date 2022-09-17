@@ -1,5 +1,6 @@
 package com.example.myloginbd.ui.remote
 
+import android.util.Log
 import com.example.myloginbd.ui.dominio.dominio.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
@@ -31,6 +32,7 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
                 .await()
             isSuccessful
         } catch (e: Exception){
+            Log.d("Sign Up ERROR:",  e.message.toString())
             false
         }
     }

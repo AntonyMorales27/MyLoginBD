@@ -1,4 +1,4 @@
-package com.example.myloginbd
+package com.example.myloginbd.ui.signUp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.resources.Compatibility.Api21Impl.inflate
 import androidx.core.content.res.ColorStateListInflaterCompat.inflate
@@ -19,6 +20,7 @@ import com.example.myloginbd.databinding.ActivityMainBinding.inflate
 import com.example.myloginbd.databinding.ActivityMenu2Binding.inflate
 import com.example.myloginbd.databinding.ActivityRegistroBinding
 import com.example.myloginbd.ui.Resource
+import com.example.myloginbd.ui.dominio.dominio.model.User
 import com.example.myloginbd.ui.signUp.SingUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,60 +37,24 @@ class RegistroActivity : AppCompatActivity() {
        val view = binding.root
        setContentView(view)
 
-    }
-
-    private fun Setup(){
-
-    }
-
-
-  /* override fun OnCreate(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = ActivityRegistroBinding.inflate(inflater,container, false)
-        return binding.root
-
-    }*/
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-
         initObservers()
         initListener()
     }
-    private fun initObservers() {
-        viewModel.signUpState.observe(viewLifecycleOwner){ state ->
-            when(state){
-                is Resource.Success ->{
-                    handleLoading(isLoading = false)
-                }
-            }
 
-        }
-        /*viewModel.signUpState.observe(viewLifecycleOwner) { state ->
-            when(state) {
+    private fun initObservers() {
+        viewModel.signUpState.observe(this){ state ->
+            when(state){
                 is Resource.Success -> {
-                    handleLoading(isLoading = false)
-                    activity?.onBackPressed()
-                    Toast.makeText(
-                        requireContext(),
-                        "Sign up success",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Error -> {
-                    handleLoading(isLoading = false)
-                    Toast.makeText(
-                        requireContext(),
-                        state.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Error: ${state.message}", Toast.LENGTH_SHORT).show()
                 }
-                is Resource.Loading -> handleLoading(isLoading = true)
-                else -> Unit
+                else -> {
+                    // Otra caso
+                }
             }
-        }*/
+        }
     }
      private fun initListener(){
          with(binding){
@@ -99,9 +65,16 @@ class RegistroActivity : AppCompatActivity() {
      }
 
     private fun handleSignUp(){
-        val email = binding.toString()
-        val password = binding.toString()
 
-        viewModel.sinUp(email, password)
+        val user = User(
+            email = binding.editTextTextEmailAddress.text.toString(),
+            name = binding.editTextTextPersonName.text.toString(),
+            lastName = binding.editTextTextLasName.text.toString(),
+            userName = binding.editTextTextUserName.text.toString(),
+        )
+
+        val password = binding.editTextTextPassword.text.toString()
+
+        viewModel.sinUp(user, password)
     }
 }
